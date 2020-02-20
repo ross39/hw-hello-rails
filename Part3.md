@@ -9,6 +9,7 @@ such as this one that specifies only a hostname (and possibly a port)
 will fetch the app's home page.  For a brand-new Rails app without any
 code, this page is the  "Welcome to Rails" splash page you see.  
 
+## Create Routes
 If you now try the URI _root-URI_/`/movies`
 (that is, 
 `https://`_workspace_--id.`gitpod.io/movies`
@@ -76,9 +77,37 @@ that our route is working correctly!  As before, this error
 message and additional information are captured in the log file
 `log/development.log`. 
 
-Having covered the first two steps in the list---setting up the app
-skeleton and creating some initial routes---we can move on to setting up
-the database that will store the models, the "M" of MVC.
+## Create Controller
+- Create a controller to handle the RESTful routes we've setup. Create a new file `app/controllers/movies_controller.rb`, and add the following contents:
+```
+class MoviesController < ApplicationController
+  def index
+    @movies = Movie.all
+  end
+end
+```
+
+## Create View
+- Create a new view template file `app/views/movies/index.html.haml`, and add the following haml code:
+```
+-#  This file is app/views/movies/index.html.haml
+%h1 All Movies
+
+%table#movies
+  %thead
+    %tr
+      %th Movie Title
+      %th Rating
+      %th Release Date
+      %th More Info
+  %tbody
+    - @movies.each do |movie|
+      %tr
+        %td= movie.title 
+        %td= movie.rating
+        %td= movie.release_date
+        %td= link_to "More about #{movie.title}", movie_path(movie)
+```
 
 ## Summary
 
