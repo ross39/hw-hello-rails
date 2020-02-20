@@ -88,7 +88,13 @@ end
 ```
 
 ## Create View
-- Create a new view template file `app/views/movies/index.html.haml`, and add the following haml code:
+- We're using the `haml` templating system, which isn't included out-of-the-box with rails, so we'll need to add the following to the Gemfile:
+```
+gem 'haml'
+```
+- In order to pick up this dependency, we'll need to kill the app, and run `bundle install`. That will install our new `haml` dependency. Then start the app again with `rails server`.
+
+- Create a new view template file `app/views/movies/index.html.haml`, and add the following haml code, which will display a table of movie data:
 ```
 -#  This file is app/views/movies/index.html.haml
 %h1 All Movies
