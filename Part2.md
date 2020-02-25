@@ -125,8 +125,25 @@ end
 
 As a last step before continuing, you should _seed_ the database with some
 movies to make the rest of the chapter more interesting.
-Copy [this code](https://gist.github.com/armandofox/056aae02801cf42a0199)
-into `db/seeds.rb` and run `rake db:seed` to run it.
+Copy the code below into `db/seeds.rb` and run `rake db:seed` to run it:
+
+```ruby
+# Seed the RottenPotatoes DB with some movies.
+more_movies = [
+  {:title => 'Aladdin', :rating => 'G',
+    :release_date => '25-Nov-1992'},
+  {:title => 'When Harry Met Sally', :rating => 'R',
+    :release_date => '21-Jul-1989'},
+  {:title => 'The Help', :rating => 'PG-13',
+    :release_date => '10-Aug-2011'},
+  {:title => 'Raiders of the Lost Ark', :rating => 'PG',
+    :release_date => '12-Jun-1981'}
+]
+
+more_movies.each do |movie|
+  Movie.create!(movie)
+end
+```
 
 ### Next Step
 
